@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Guard : MonoBehaviour
 {
     public float speed = 5.0f;
     public float waitTime = .3f;
     public float turnSpeed = 90; // 90 degrees per second
+
+    public Light spotLight;
+    public float viewDistance;
+    float viewAngle;
 
     public Transform pathHolder;
 
     // Start is called before the first frame update
     void Start()
     {
+        viewAngle = spotLight.spotAngle;
+
         Vector3[] waypoints = new Vector3[pathHolder.childCount];
         for (int i=0; i<waypoints.Length; ++i)
         {
@@ -34,6 +40,9 @@ public class NewBehaviourScript : MonoBehaviour
             previousPosition = waypoint.position;
         }
         Gizmos.DrawLine(previousPosition, startPosition);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
     }
 
     IEnumerator FollowPath(Vector3[] waypoints)
