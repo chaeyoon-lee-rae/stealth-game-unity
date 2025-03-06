@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public event System.Action OnReachedEndOfLevel;
+
     public float moveSpeed = 7;
     public float smoothMoveTime = .1f; // The amount of time to catch up to the target input magnitude
     public float turnSpeed = 8;
@@ -39,6 +41,16 @@ public class Player : MonoBehaviour
         //transform.Translate(transform.forward * moveSpeed * Time.deltaTime * smoothInputMagnitude, Space.World);
 
         velocity = transform.forward * moveSpeed * smoothInputMagnitude;
+    }
+
+    private void OnTriggerEnter(Collider hitCollider)
+    {
+        if (hitCollider.tag == "Finish")
+        {
+            Disable();
+            if (OnReachedEndOfLevel != null)
+                OnReachedEndOfLevel();
+        }
     }
 
     void Disable()

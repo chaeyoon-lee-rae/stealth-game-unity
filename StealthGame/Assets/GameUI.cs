@@ -13,6 +13,7 @@ public class GameUI : MonoBehaviour
     void Start()
     {
         Guard.OnGuardHasSpottedPlayer += ShowGameLoseUI;
+        FindObjectOfType<Player>().OnReachedEndOfLevel += ShowGameWinUI;
     }
 
     // Update is called once per frame
@@ -40,5 +41,6 @@ public class GameUI : MonoBehaviour
         gameOverUI.SetActive(true);
         gameIsOver = true;
         Guard.OnGuardHasSpottedPlayer -= ShowGameLoseUI;
+        FindObjectOfType<Player>().OnReachedEndOfLevel -= ShowGameWinUI;
     }
 }
