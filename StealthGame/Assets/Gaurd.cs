@@ -64,18 +64,13 @@ public class NewBehaviourScript : MonoBehaviour
         Vector3 dirToLookTarget = (lookTarget - transform.position).normalized;
         float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
 
-        while (Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle) > 0.05f)
+        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle)) > 0.05f)
         {
             float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, turnSpeed * Time.deltaTime);
             transform.eulerAngles = Vector3.up * angle;
             yield return null;
         }
     }
-
-    // 물체를 움직이는 방법이 다양한 거 같은데...
-    // MoveTowards...RotateTowards... LookAt 뭐가 이렇게 많노....
-    // 그리고 또 어느 object를 가져오는지도 다양한 방법들이 있고!
-    // 
 
     // Update is called once per frame
     void Update()
