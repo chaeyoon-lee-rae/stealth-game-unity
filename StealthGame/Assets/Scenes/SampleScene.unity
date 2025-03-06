@@ -556,6 +556,7 @@ MonoBehaviour:
   speed: 5
   waitTime: 0.3
   turnSpeed: 90
+  timeToSpotPlayer: 0.5
   spotLight: {fileID: 1213294538}
   viewDistance: 10
   viewMask:
@@ -1112,7 +1113,7 @@ GameObject:
   - component: {fileID: 1764664752}
   - component: {fileID: 1764664751}
   - component: {fileID: 1764664750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
