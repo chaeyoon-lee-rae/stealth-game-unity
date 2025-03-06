@@ -10,14 +10,19 @@ public class Guard : MonoBehaviour
 
     public Light spotLight;
     public float viewDistance;
+    public LayerMask viewMask;
     float viewAngle;
 
     public Transform pathHolder;
+    Transform player;
+    Color originalSpotLightColor;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         viewAngle = spotLight.spotAngle;
+        originalSpotLightColor = spotLight.color;
 
         Vector3[] waypoints = new Vector3[pathHolder.childCount];
         for (int i=0; i<waypoints.Length; ++i)
@@ -26,6 +31,25 @@ public class Guard : MonoBehaviour
             waypoints[i].y = transform.localScale.y;
         }
         StartCoroutine(FollowPath(waypoints));
+    }
+
+    bool CanSeePlayer()
+    {
+        // square distance가 더 빠르다
+        if (Vector3.Distance(transform.position, player.position) < viewDistance)
+        {
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            float angleBetweenGuardAndPlayer = Vector3.Angle(transform.forward, dirToPlayer);
+            if (angleBetweenGuardAndPlayer < viewAngle / 2f)
+            {
+                // if haven't hit anything
+                if (!Physics.Linecast(transform.position, player.position, viewMask))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void OnDrawGizmos()
@@ -84,6 +108,12 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CanSeePlayer())
+        {
+            spotLight.color = Color.red;
+        } else
+        {
+            spotLight.color = originalSpotLightColor;
+        }
     }
 }

@@ -259,7 +259,7 @@ Transform:
   m_GameObject: {fileID: 260846706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: -4.43, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 423973142}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,6 +556,11 @@ MonoBehaviour:
   speed: 5
   waitTime: 0.3
   turnSpeed: 90
+  spotLight: {fileID: 1213294538}
+  viewDistance: 10
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 64
   pathHolder: {fileID: 16324543}
 --- !u!136 &545237394
 CapsuleCollider:
@@ -889,7 +894,7 @@ Transform:
   m_GameObject: {fileID: 1016332021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.87, y: 2.76, z: 5.03}
+  m_LocalPosition: {x: -2.85, y: 2.76, z: 5.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -952,8 +957,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9855458, g: 1, b: 0.49371064, a: 1}
-  m_Intensity: 17
-  m_Range: 18
+  m_Intensity: 8
+  m_Range: 13
   m_SpotAngle: 80
   m_InnerSpotAngle: 8
   m_CookieSize: 10
@@ -962,7 +967,7 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
+    m_Bias: 0
     m_NormalBias: 0.4
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
@@ -1125,7 +1130,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1016332022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
